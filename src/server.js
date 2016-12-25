@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var exec = require('child_process').exec;
+
 var defaultConf = require("./defaultConfig");
 var console = require('./console');
 var moreInfo = "More information please view: https://github.com/wewoor/cup"
@@ -18,6 +20,7 @@ module.exports = {
             var host = server.address().address;
             var port = server.address().port;
             context.log(host, port , path)
+            exec(`open http://localhost:${port}`)
         });
     },
 
@@ -45,7 +48,7 @@ module.exports = {
     },
 
     log: function(host, port , path) {
-        console.info(`The server listening at http://${host}:${port}'.`);
+        console.info(`The server listening at http://localhost:${port}'.`);
         console.info(`The static path is ${path}/`)
     },
 

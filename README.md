@@ -1,5 +1,5 @@
 # Cup
-> An easy way to run static files in server container.
+An easy way to run a file server in your system. you can indicate the public file path to run the server ,and look these html static files in browser.
 
 
 # install
@@ -8,16 +8,16 @@
 
 # Usage
 
-### run defatul path
+### run default path
 
-```shell
+```bash
 $ cup run //Default path is current root directory. 
 ```
 
 ### run indicated path
 
-```shell
-$ cup run <path> //path is your indicated directory
+```bash
+$ cup run <path> //The path is your indicated directory
 ```
 
 
