@@ -2,7 +2,11 @@
 > An easy way to run static files in server container.
 
 
-#Usage
+# install
+
+> npm install git@github.com:wewoor/cup.git -g
+
+# Usage
 
 ### run defatul path
 
