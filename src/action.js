@@ -1,13 +1,18 @@
 
 
-// var server = require("./server");
+var server = require("./server");
+var exec = require('child_process').exec;
 
 module.exports = {
 
     runServer: function(env) {
-        console.log("run default server:");
+        console.log("run default server:", env);
+        console.log("path:", __dirname); // or __filename
+
+        var dir = (process.argv)[2] || '__dirname';
+        console.log("current dir", dir)
+        exec('./server ' + dir)
         // var child = require('child_process').exec('server.js');
-        // var exec = require('child_process').exec;
         // exec("node .exit", (err) => {
         //     console.log(err);
         // })
