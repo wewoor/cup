@@ -10,10 +10,13 @@
 
 ### run defatul path
 
-> cup run // Default path is current root directory. 
+```bash
+$ cup run // Default path is current root directory. 
+```
 
 ### run indicated path
-
-> cup run <path> // path is your indicated directory
+```bash
+$ cup run <path> // path is your indicated directory
+```
 
 
