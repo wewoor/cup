@@ -46,7 +46,7 @@ module.exports = {
 
     log: function(host, port , path) {
         console.info(`The server listening at http://${host}:${port}'.`);
-        console.info(`The static path is ${path}.`)
+        console.info(`The static path is ${path}/`)
     },
 
 }

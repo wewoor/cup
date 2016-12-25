@@ -4,7 +4,7 @@ var exec = require('child_process').exec;
 module.exports = {
 
     runPath: function(path) {
-        var dir = `${process.env.PWD}/${path}` || __dirname;
+        var dir =  path ? `${process.env.PWD}/${path}` : __dirname;
         server.runPath(dir)
     },
 
