@@ -10,13 +10,12 @@ var actions = require('./src/action');
 var console = require('./src/console');
 
 try {
-    console.info("Current Cup version is: " + package.version);
 
     program.version(package.version)
     .usage('cup [option]')
 
-    .option('-c, --config', 'use indicate config to run the server', actions.runConfig)
-    .option('-v, --version', 'show version number', actions.version)
+    .option('-c, --config', 'use indicated config to run the server', actions.runConfig)
+    .option('-v, --version', 'show version number')
     .option('-l, --list', 'list out all servers', actions.list);
 
     program
