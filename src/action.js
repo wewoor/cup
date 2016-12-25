@@ -1,22 +1,11 @@
-
-
 var server = require("./server");
 var exec = require('child_process').exec;
 
 module.exports = {
 
-    runServer: function(env) {
-        console.log("run default server:", env);
-        console.log("path:", __dirname); // or __filename
-
-        var dir = (process.argv)[2] || '__dirname';
-        console.log("current dir", dir)
-        exec('./server ' + dir)
-        // var child = require('child_process').exec('server.js');
-        // exec("node .exit", (err) => {
-        //     console.log(err);
-        // })
-        // process.exit(1);
+    runPath: function(path) {
+        var dir = `${process.env.PWD}/${path}` || __dirname;
+        server.runPath(dir)
     },
 
     stopServer: function(id) {
@@ -31,16 +20,10 @@ module.exports = {
         console.log("restart a server:", id);
     },
 
-    runConfig: function(config) {
-        console.log("run by config.", config);
-    },
-
-    runByPath: function(path) {
-        console.log("run by path.", config);
-    },
-
-    runByPath: function(path) {
-        console.log("run by path.", config);
+    runConfig: function() {
+        console.log("run by config.", process.env.PWD);
+        var cupConfig = require(`${process.env.PWD}/config.cup.json`)
+        server.runConfig(cupConfig)
     },
 
     version: function(version) {

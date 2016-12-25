@@ -7,22 +7,22 @@
 var package = require('./package.json');
 var program = require('commander');
 var actions = require('./src/action');
+var console = require('./src/console');
 
 try {
-    // console.log("version:", package.version);
-    // console.log(program);
+    console.info("Current Cup version is: " + package.version);
+
     program.version(package.version)
     .usage('cup [option]')
 
-    .option('-c, --config', 'use config to run the server', actions.runConfig)
-    .option('-c <path>', 'use config and indicate path to run the server', actions.help)
-    .option('-v --version', 'show version number', actions.version)
-    .option('-l --list', 'list out all server', actions.list);
+    .option('-c, --config', 'use indicate config to run the server', actions.runConfig)
+    .option('-v, --version', 'show version number', actions.version)
+    .option('-l, --list', 'list out all servers', actions.list);
 
     program
-    .command('run')
+    .command('run [path]')
     .description('use current path to run a server application')
-    .action(actions.runServer)
+    .action(actions.runPath)
 
     // This command is excute to stop someone server progress.
     program.
@@ -51,5 +51,5 @@ try {
     program.parse(process.argv);
 
 } catch(e) {
-    console.error("Exec error.", e);
+    console.error("Exec error." + e);
 }

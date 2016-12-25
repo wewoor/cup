@@ -1,0 +1,5 @@
+{
+	"name": "testcup",
+	"listen": 3000,
+	"public": "/static"
+}

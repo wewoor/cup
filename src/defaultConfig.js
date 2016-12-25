@@ -1,11 +1,7 @@
-// 远程服务器配置
+// Default server configuration
 module.exports = {
-
     server: {
-        listen: 3000, // 监听端口
-        name: "127.0.0.1",
-        root: '/', // 根目录
-        host: '127.0.0.1', // 
-        port: '8080',
+        listen: 3000, // Default listen port
+        host: '127.0.0.1', // Default Host
     }
 };
