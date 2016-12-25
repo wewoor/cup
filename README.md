@@ -4,7 +4,7 @@ An easy way to run a file server in your system. you can indicate the public fil
 
 # install
 
-> npm install git@github.com:wewoor/cup.git -g
+> npm install https://github.com/wewoor/cup.git -g
 
 # Usage
 
