@@ -23,11 +23,11 @@ try {
     .action(actions.runPath)
 
     program.on('--help', function() {
-        console.log(' Examples:');
-        console.log('');
-        console.log('$ cup --help');
-        console.log('$ cup -h');
-        console.log('');
+        console.info(' Examples:');
+        console.info('');
+        console.info('$ cup --help');
+        console.info('$ cup -h');
+        console.info('');
     });
 
     program.parse(process.argv);
