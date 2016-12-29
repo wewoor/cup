@@ -10,15 +10,14 @@ var actions = require('./src/action');
 var console = require('./src/console');
 
 try {
-
     program.version(package.version)
     .usage('cup [option]')
-
-    .option('-c, --config', 'use indicated config to run the server', actions.runConfig)
     .option('-v, --version', 'show version number')
 
     program
     .command('run [path]')
+    .option('-c, --config', 'use indicated config to run the server', actions.runConfig)
+    .option('-p, --port [port]', 'custom server port number')
     .description('use current path to run a server application')
     .action(actions.runPath)
 

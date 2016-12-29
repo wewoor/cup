@@ -40,11 +40,12 @@ module.exports = {
         this.run(config.listen, config.public)
     },
 
-    runPath: function(path) {
+    runPath: function(path, port) {
         if (!path) {
             throw new Error("You haven't set static file path.")
         }
-        this.run(defaultConf.server.listen, path)
+        port = port || defaultConf.server.listen
+        this.run(port, path)
     },
 
     log: function(host, port , path) {
