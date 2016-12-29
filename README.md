@@ -1,6 +1,10 @@
 # Cup
 An easy way to run a file server in your system. you can indicate the public file path to run the server ,and look these html static files in browser.
 
+> 1. support custom server port
+> 2. support indicate server public path
+> 3. support location parse. you can use location specify some special path.
+> 4. support api server proxy.
 
 # install
 
@@ -32,7 +36,27 @@ and this file is located in you project root path. when you
 run the below command, this file will be readed by cup, and the server will be run by your configration.
 
 ```bash
-$ cup run -c
+$ cup -c
+or
+$ cup config
+```
+
+#### config example
+```json
+{
+    "name": "testcup",
+    "listen": 3001,
+    "root": "test/public",
+    "location": {
+        "*": "test/public/index.html"
+    },
+    "proxyTable": {
+        "/public": "www.google.com",
+        "/test": "www.google.com"
+    }
+}
+
+
 ```
 
 # License
