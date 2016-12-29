@@ -1,8 +1,6 @@
 var express = require('express');
+var proxy = require('express-http-proxy');
 var app = express();
-var exec = require('child_process').exec;
-
-var defaultConf = require("./defaultConfig");
 var console = require('./console');
 var moreInfo = "More information please view: https://github.com/wewoor/cup"
 
@@ -12,45 +10,71 @@ var logErrors = function(err, req, res, next) {
 }
 
 module.exports = {
-    run: function(listen, path) {
+
+    setApp: function(path, listen) {
         app.use(express.static(path));
         app.use(logErrors);
-        var context = this;
-        var server = app.listen(listen, function() {
-            var host = server.address().address;
-            var port = server.address().port;
-            context.log(host, port , path)
-            exec(`open http://localhost:${port}`)
-        });
+        return app;
     },
 
-    runConfig: function(config) {
+    getByConfig: function(config) {
         if (!config) {
             throw new Error("You haven't set config file. ")
             return false
         }
-        if (!config.public) {
+        if (!config.root) {
             throw new Error("You haven't set static file path." + moreInfo)
         }
         if (!config.listen) {
             throw new Error("You haven't set the listen port." + moreInfo)
             return false
         }
-        console.info("The cup configuration is" + JSON.stringify(config))
-        this.run(config.listen, config.public)
+
+        this.parseLocation(config.location)
+        this.parseProxy(config.proxyTable)
+        return this.setApp(config.root, config.listen)
     },
 
-    runPath: function(path, port) {
+    getNoConfig: function(path, port) {
         if (!path) {
             throw new Error("You haven't set static file path.")
         }
         port = port || defaultConf.server.listen
-        this.run(port, path)
+        return this.setApp(path, port)
     },
 
-    log: function(host, port , path) {
-        console.info(`The server listening at http://localhost:${port}'.`);
-        console.info(`The static path is ${path}/`)
+    /**
+     * 添加请求路径解析
+     * @param  {[type]} proxyObj [description]
+     * @return {[type]}          [description]
+     */
+    parseLocation(location) {
+        console.info(`curent: ${process.env.PWD}`)
+        if (location) {
+            var paths = Object.getOwnPropertyNames(location)
+            for (var i in paths) {
+                console.info(`Cup have added parse for location: ${paths[i]} \n target: ${location[paths[i]]}`)
+                app.get(paths[i], (req, res) => {
+                    res.sendFile(`${process.env.PWD}/${location[paths[i]]}`);
+                });
+            }
+        }
     },
 
+    /**
+     * 添加代理解析
+     * @param  {[type]} proxyObj [description]
+     * @return {[type]}          [description]
+     */
+    parseProxy(proxyObj) {
+        if (proxyObj) {
+            var paths = Object.getOwnPropertyNames(proxyObj)
+            for (var i in paths) {
+                console.info(`Cup have added proxy for path: ${paths[i]} \n target: ${proxyObj[paths[i]]}`)
+                app.get(paths[i], proxy(proxyObj[paths[i]], {
+                    https: true
+                }));
+            }
+        }
+    },
 }
