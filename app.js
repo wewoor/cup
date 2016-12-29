@@ -3,7 +3,7 @@
 /**
  * https://github.com/tj/commander.js/
  */
-
+process.title = "cup";
 var package = require('./package.json');
 var program = require('commander');
 var actions = require('./src/action');
@@ -16,10 +16,14 @@ try {
 
     program
     .command('run [path]')
-    .option('-c, --config', 'use indicated config to run the server', actions.runConfig)
     .option('-p, --port [port]', 'custom server port number')
     .description('use current path to run a server application')
     .action(actions.runPath)
+
+    program
+    .command('config [path]')
+    .description('use indicated config to run the server')
+    .action(actions.runConfig)
 
     program.on('--help', function() {
         console.info(' Examples:');
