@@ -8,7 +8,7 @@ An easy way to run a file server in your system. you can indicate the public fil
 
 # install
 
-> npm install https://github.com/wewoor/cup.git -g
+> npm install -g mini-cup 
 
 # Usage
 
@@ -58,6 +58,10 @@ $ cup config
 
 
 ```
+
+# Github
+
+https://github.com/wewoor/cup
 
 # License
 

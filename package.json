@@ -1,6 +1,6 @@
 {
-  "name": "cup",
-  "version": "1.0.0",
+  "name": "mini-cup",
+  "version": "1.0.1",
   "description": "Cup is a simple server runner. it's very easy to use.",
   "main": "app.js",
   "bin": {
@@ -18,5 +18,5 @@
     "cup": "cup"
   },
   "author": "Ziv",
-  "license": "ISC"
+  "license": "MIT"
 }
