@@ -29,7 +29,7 @@ $ cup run <path> -p <port>
 ### run by custom configration
 you can write a configration file which name is `config.cup.json`,
 and this file is located in you project root path. when you 
-run the below command, this file will be readed by cup, and the server by your configration.
+run the below command, this file will be readed by cup, and the server will be run by your configration.
 
 ```bash
 $ cup run -c
