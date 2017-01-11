@@ -12,7 +12,7 @@ var console = require('./src/console');
 try {
     program.version(package.version)
     .usage('cup [option]')
-    .option('-v, --version', 'show version number')
+    .option('-p, --port [port]', 'custom server port number')
 
     program
     .command('run [path]')

@@ -1,6 +1,6 @@
 {
   "name": "mini-cup",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cup is a simple server runner. it's very easy to use.",
   "main": "app.js",
   "bin": {
@@ -18,5 +18,10 @@
     "cup": "cup"
   },
   "author": "Ziv",
+  "homepage": "https://github.com/wewoor/cup",
+  "bugs": { 
+    "url" : "https://github.com/wewoor/cup/issues", 
+    "email" : "wewoor@foxmail.com"
+  },
   "license": "MIT"
 }
