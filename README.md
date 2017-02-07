@@ -49,17 +49,15 @@ $ cup config
     "location": {
         "*": "test/public/index.html"
     },
-    "proxyTable": { // proxy
+    "proxyTable": {
         "/public": "www.google.com",
         "/test": "www.google.com"
     }
 }
+```
 
 ### proxy config
 More proxy config [options](https://github.com/chimurai/http-proxy-middleware)
-
-```
-
 
 # Github
 
