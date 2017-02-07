@@ -1,0 +1,31 @@
+<html>
+    <head>
+       <title>cup proxy test</title>
+    <body>
+       <h1>proxy.</h1>
+       <button onclick="doReq()">Request</button>
+    </body>
+    <script type="text/javascript">
+
+        function doReq() {
+            var api = "/join";
+            var params = {
+                "user[login]": 'ziv',
+                "user[password]": '123456'
+            };
+            var req = new XMLHttpRequest();
+
+            req.onload = function() {
+                var data = JSON.parse(this.responseText);
+            }
+
+            req.onerror = function(err) {
+                console.log('req error', err);
+            }
+
+            req.open('post', api, true);
+
+            req.send(params);
+        }
+    </script>
+</html>

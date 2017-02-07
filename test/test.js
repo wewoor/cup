@@ -1,20 +1,14 @@
-const spawn = require('child_process').spawnSync;
-const ls = spawn('node', ['../src/server.js']);
+var exec = require('child_process').exec;
 
-ls.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
-});
+var dir = process.env.PWD;
+console.log(dir)
 
-ls.stderr.on('data', (data) => {
-  console.log(`stderr: ${data}`);
-});
+describe("Cup", function() {
 
-ls.stderr.on("exit", (data) => {
-    console.log("exit:", data);
+    describe("run indicate path", function() {
+        it("cup run a indicate path without error", function() {
+            exec(`node ${dir}/app.js run ${dir}/test/public`)
+        })
+    })
+
 })
-
-ls.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});
-
-process.exit();
