@@ -1,27 +1,44 @@
 {
   "name": "mini-cup",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Cup is a simple server runner. it's very easy to use.",
+  "keywords": [
+    "web server",
+    "lightweight",
+    "test",
+    "container",
+    "runner"
+  ],
   "main": "app.js",
   "bin": {
     "cup": "./app.js"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
+    "chalk": "^1.1.3",
     "commander": "^2.9.0",
     "express": "^4.13.3",
     "express-http-proxy": "^0.10.1",
-    "express-session": "^1.13.0"
+    "express-session": "^1.13.0",
+    "http-proxy-middleware": "^0.17.3"
   },
   "devDependencies": {},
   "scripts": {
-    "cup": "cup"
+    "cup": "cup",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wewoor/cup"
   },
   "author": "Ziv",
+  "maintainers": [
+    "Ziv <wewoor@foxmail.com> (imziv.com)"
+  ],
   "homepage": "https://github.com/wewoor/cup",
-  "bugs": { 
-    "url" : "https://github.com/wewoor/cup/issues", 
-    "email" : "wewoor@foxmail.com"
+  "bugs": {
+    "url": "https://github.com/wewoor/cup/issues",
+    "email": "wewoor@foxmail.com"
   },
   "license": "MIT"
 }
