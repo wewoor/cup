@@ -1,12 +1,13 @@
 # Cup
-An easy way to run a file server in your system. you can indicate the public file path to run the server ,and look these html static files in browser.
+An easy way to run a web server in your system. you can indicate the public file path to run the server ,and look these html static files in browser.
 
+# Features
 > 1. support custom server port
 > 2. support indicate server public path
 > 3. support location parse. you can use location specify some special path.
 > 4. support api server proxy.
 
-# install
+# Install & Upgrade
 
 > npm install -g mini-cup 
 
@@ -31,9 +32,7 @@ $ cup run <path> -p <port>
 ```
 
 ### run by custom configration
-you can write a configration file which name is `config.cup.json`,
-and this file is located in you project root path. when you 
-run the below command, this file will be readed by cup, and the server will be run by your configration.
+you can write a configration file which name is `config.cup.json` and located in you project root path. when you run the belows commands, this config file will be readed by cup, and the server will be run by your configration.
 
 ```bash
 $ cup -c
@@ -50,14 +49,17 @@ $ cup config
     "location": {
         "*": "test/public/index.html"
     },
-    "proxyTable": {
+    "proxyTable": { // proxy
         "/public": "www.google.com",
         "/test": "www.google.com"
     }
 }
 
+### proxy config
+More proxy config [options](https://github.com/chimurai/http-proxy-middleware)
 
 ```
+
 
 # Github
 
