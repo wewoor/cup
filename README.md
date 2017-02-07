@@ -54,6 +54,7 @@ $ cup config
         "/test": "www.google.com"
     }
 }
+
 ```
 
 ### proxy config
