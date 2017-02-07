@@ -1,7 +1,9 @@
 var express = require('express');
-var proxy = require('express-http-proxy');
+var proxy = require('http-proxy-middleware');
+
 var app = express();
-var console = require('./console');
+var log = console.log;
+var chalk = require('chalk');
 var moreInfo = "More information please view: https://github.com/wewoor/cup"
 
 var logErrors = function(err, req, res, next) {
@@ -43,37 +45,36 @@ module.exports = {
         return this.setApp(path, port)
     },
 
-    /**
-     * 添加请求路径解析
-     * @param  {[type]} proxyObj [description]
-     * @return {[type]}          [description]
-     */
     parseLocation(location) {
-        console.info(`curent: ${process.env.PWD}`)
         if (location) {
             var paths = Object.getOwnPropertyNames(location)
-            for (var i in paths) {
-                console.info(`Cup have added parse for location: ${paths[i]} \n target: ${location[paths[i]]}`)
-                app.get(paths[i], (req, res) => {
-                    res.sendFile(`${process.env.PWD}/${location[paths[i]]}`);
-                });
+            if (paths.length > 0) {
+                log(chalk.yellow('Cup parsing location:\n'))
+                for (var i in paths) {
+                    log(chalk.blue(` ${paths[i]} : ${location[paths[i]]}`))
+                    app.get(paths[i], (req, res) => {
+                        res.sendFile(`${process.env.PWD}/${location[paths[i]]}`);
+                    });
+                }
+                log('\n')
             }
         }
     },
 
-    /**
-     * 添加代理解析
-     * @param  {[type]} proxyObj [description]
-     * @return {[type]}          [description]
-     */
     parseProxy(proxyObj) {
         if (proxyObj) {
             var paths = Object.getOwnPropertyNames(proxyObj)
-            for (var i in paths) {
-                console.info(`Cup have added proxy for path: ${paths[i]} \n target: ${proxyObj[paths[i]]}`)
-                app.get(paths[i], proxy(proxyObj[paths[i]], {
-                    https: true
-                }));
+            var options = {
+                preserveHostHdr: true,
+                reqAsBuffer: true
+            }
+            if (paths.length > 0) {
+                log(chalk.yellow('Cup added proxy:\n'))
+                for (var i in paths) {
+                    log(chalk.blue(` ${paths[i]} : ${proxyObj[paths[i]].target}`))
+                    app.use(paths[i], proxy(proxyObj[paths[i]]));
+                }
+                log('\n')
             }
         }
     },

@@ -1,6 +1,7 @@
 var exec = require('child_process').exec;
 var defaultConf = require("./defaultConfig");
-var console = require('./console');
+var chalk = require('chalk');
+var log = console.log;
 
 var moreInfo = "More information please view: https://github.com/wewoor/cup"
 
@@ -35,8 +36,9 @@ module.exports = {
     },
 
     log: function(host, port , path) {
-        console.info(`The server listening at http://localhost:${port}'.`);
-        console.info(`The static path is ${path}/`)
+        log(`The app is running at: \n\n `, chalk.blue(`http://localhost:${port} \n`));
+        log(`The static path is: \n\n `, chalk.blue(`${path}/ \n`));
+        log(`Use ctrl + c exit the app.\nGet more helps,`, chalk.blue("use cup -h."))
     },
 
 }
