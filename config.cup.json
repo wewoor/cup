@@ -3,10 +3,11 @@
 	"listen": 3001,
 	"root": "test/public",
     "location": {
-        "*": "test/public/index.html"
     },
     "proxyTable": {
-        "/public": "www.google.com",
-        "/test": "www.google.com"
+        "/join": {
+            "target": "https://github.com",
+            "changeOrigin": true,
+        }
     }
 }
