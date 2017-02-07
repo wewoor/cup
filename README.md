@@ -9,7 +9,7 @@ An easy way to run a web server in your system. you can indicate the public file
 
 # Install & Upgrade
 
-> npm install -g mini-cup 
+> npm install -g cup-server
 
 # Usage
 
