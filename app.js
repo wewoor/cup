@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-/**
- * https://github.com/tj/commander.js/
- */
 process.title = "cup";
 var package = require('./package.json');
 var program = require('commander');
@@ -12,7 +9,6 @@ var console = require('./src/console');
 try {
     program.version(package.version)
     .usage('cup [option]')
-    .option('-p, --port [port]', 'custom server port number')
 
     program
     .command('run [path]')
