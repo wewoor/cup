@@ -7,7 +7,7 @@
     "proxyTable": {
         "/join": {
             "target": "https://github.com",
-            "changeOrigin": true,
+            "changeOrigin": true
         }
     }
 }
