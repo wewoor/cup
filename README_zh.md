@@ -1,5 +1,6 @@
 # Cup
 一个简单的，轻便的服务器容器。
+### [English Docs](./README.md)
 
 # 特点
 1. 轻松指定目录、端口开启服务容器
@@ -56,12 +57,12 @@ $ cup // 默认为命令行当前目录添加server服务
     "listen": 8080,
     "root": "./",
     "location": {
-        "/test/*": "build/index.html",
-        "/login": "build/index.html"
+        "/test/*": "./index.html",
+        "/login": "./index.html"
     },
     "proxyTable": {
         "/api": {
-            "target": "http://test.api.fdid.fangde.com",
+            "target": "http://test.api.com",
             "changeOrigin": true
         }
     }
