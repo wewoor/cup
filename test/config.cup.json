@@ -1,0 +1,13 @@
+{
+	"name": "testcup",
+	"listen": 3001,
+	"root": "public",
+    "location": {
+    },
+    "proxyTable": {
+        "/join": {
+            "target": "https://github.com",
+            "changeOrigin": true
+        }
+    }
+}

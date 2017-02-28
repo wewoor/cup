@@ -1,8 +1,10 @@
 # Cup
 An easy way to run a web server in your system. you can indicate the public file path to run the server ,and look these html static files in browser.
 
+### [中文文档](./README_zh.md)
+
 # Features
-> 1. support custom server port
+> 1. easy indicate directory and custom server port
 > 2. support indicate server public path
 > 3. support location parse. you can use location specify some special path.
 > 4. support api server proxy.

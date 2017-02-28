@@ -1,7 +1,7 @@
 {
 	"name": "testcup",
 	"listen": 3001,
-	"root": "test/public",
+	"root": "./",
     "location": {
     },
     "proxyTable": {
