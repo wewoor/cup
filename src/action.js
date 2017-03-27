@@ -12,7 +12,6 @@ module.exports = {
     runConfig: function(path) {
         path = path || `${process.cwd()}/cup.config.js` || `${process.cwd()}/config.cup.js`
         var cupConfig = require(path)
-        console.log('config', cupConfig)
         console.log('Current app is running by your custom cofig:\n\n', chalk.blue(`${path} \n`))
         server.runConfig(cupConfig)
     },
