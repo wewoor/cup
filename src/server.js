@@ -1,5 +1,7 @@
 var express = require('express');
 var proxy = require('http-proxy-middleware');
+var compression = require('compression');
+var morgan = require('morgan');
 
 var app = express();
 var log = console.log;
@@ -11,9 +13,18 @@ var logErrors = function(err, req, res, next) {
     next(err)
 }
 
+var reqHandler = function(target) {
+    return function(req, res) {
+        log(chalk.blue(`you send a request：${req.method} > ${req.url}`))
+        res.sendFile(target);
+    }
+}
+
 module.exports = {
 
     setApp: function(path, listen) {
+        app.use(morgan('combined'));
+        app.use(compression());
         app.use(express.static(path));
         app.use(logErrors);
         return app;
@@ -50,11 +61,12 @@ module.exports = {
             var paths = Object.getOwnPropertyNames(location)
             if (paths.length > 0) {
                 log(chalk.yellow('Cup parsing location:\n'))
-                for (var i in paths) {
-                    log(chalk.blue(` ${paths[i]} : ${location[paths[i]]}`))
-                    app.get(paths[i], (req, res) => {
-                        res.sendFile(`${process.env.PWD}/${location[paths[i]]}`);
-                    });
+                for (var i = 0 ; i < paths.length ; i++) {
+                    var url = paths[i]
+                    var target = `${process.env.PWD}/${location[url]}`
+                    log(chalk.blue(`${url} : ${location[url]}`))
+                    app.get(url, reqHandler(target))
+                    app.post(url, reqHandler(target))
                 }
                 log('\n')
             }

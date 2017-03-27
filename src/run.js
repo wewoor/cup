@@ -2,7 +2,6 @@ var exec = require('child_process').exec;
 var defaultConf = require("./defaultConfig");
 var chalk = require('chalk');
 var log = console.log;
-
 var moreInfo = "More information please view: https://github.com/wewoor/cup"
 
 var logErrors = function(err, req, res, next) {
