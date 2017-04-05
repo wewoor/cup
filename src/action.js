@@ -10,7 +10,11 @@ module.exports = {
     },
 
     runConfig: function(path) {
-        path = path || `${process.cwd()}/cup.config.js` || `${process.cwd()}/config.cup.js`
+        // TODO Backward Compatibile
+        path = path || `${process.cwd()}/cup.config.js` || 
+        `${process.cwd()}/config.cup.js` || 
+        `${process.cwd()}/cup.config.json` ||
+        `${process.cwd()}/config.cup.json`;
         var cupConfig = require(path)
         console.log('Current app is running by your custom cofig:\n\n', chalk.blue(`${path} \n`))
         server.runConfig(cupConfig)

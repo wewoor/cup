@@ -15,7 +15,7 @@ var logErrors = function(err, req, res, next) {
 
 var reqHandler = function(target) {
     return function(req, res) {
-        log(chalk.blue(`you send a request：${req.method} > ${req.url}`))
+        log(chalk.blue(`${req.method} > ${req.url}`))
         res.sendFile(target);
     }
 }
