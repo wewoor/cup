@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 process.title = "cup";
-var package = require('./package.json');
+var package = require('../package.json');
 var program = require('commander');
-var actions = require('./src/action');
-var console = require('./src/console');
+var actions = require('../src/action');
+var console = require('../src/console');
 
 try {
     program.version(package.version)

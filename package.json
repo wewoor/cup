@@ -11,7 +11,7 @@
   ],
   "main": "app.js",
   "bin": {
-    "cup": "./app.js"
+    "cup": "./bin/cli.js"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
