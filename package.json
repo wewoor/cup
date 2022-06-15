@@ -1,7 +1,8 @@
 {
   "name": "mini-cup",
   "version": "1.1.2",
-  "description": "Cup is a simple server runner. it's very easy to use.",
+  "type": "commonjs",
+  "description": "Easy to serve static web resources, Easy to proxy requests.",
   "keywords": [
     "web server",
     "lightweight",
@@ -15,8 +16,8 @@
   },
   "dependencies": {
     "body-parser": "^1.14.1",
-    "chalk": "^1.1.3",
-    "commander": "^2.9.0",
+    "chalk": "4.1.2",
+    "commander": "^9.3.0",
     "compression": "^1.6.2",
     "express": "^4.13.3",
     "express-http-proxy": "^0.10.1",
@@ -24,10 +25,18 @@
     "http-proxy-middleware": "^0.17.3",
     "morgan": "^1.8.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0"
+  },
   "scripts": {
     "cup": "cup",
-    "test": "mocha"
+    "test": "mocha",
+    "eslint": "eslint src/** bin/** --fix",
+    "serve": "node src/server.js"
   },
   "repository": {
     "type": "git",

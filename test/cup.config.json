@@ -1,5 +1,5 @@
 {
-	"name": "testcup",
+	"name": "test-cup",
 	"listen": 3001,
 	"root": "public",
     "location": {

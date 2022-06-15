@@ -1,36 +1,40 @@
 #!/usr/bin/env node
 
-process.title = "cup";
-var package = require('../package.json');
-var program = require('commander');
-var actions = require('../src/action');
-var console = require('../src/console');
+process.title = 'cup'
+
+const program = require('commander')
+
+const packageInfo = require('../package.json')
+const logger = require('../src/logger').default
+const { runByPath, runByConfig } = require('../src/actions').default
 
 try {
-    program.version(package.version)
-    .usage('cup [option]')
+    program
+        .name('cup')
+        .description(packageInfo.description)
+        .version(packageInfo.version)
 
     program
-    .command('run [path]')
-    .option('-p, --port [port]', 'custom server port number')
-    .description('use current path to run a server application')
-    .action(actions.runPath)
+        .command('serve')
+        .description('startup the server and serve the path you specified.')
+        .arguments('[path]', 'required the root path of the server.')
+        .option('-p, --port <port>', 'use custom server port. default is 3000.')
+        .option('-c, --config', 'use cup.config.js or cup.config.json to startup the server.')
+        .action((path, options) => {
+            if (path) {
+                runByPath(path, options)
+            } else {
+                runByConfig(path)
+            }
+        })
 
-    program
-    .command('config [path]')
-    .description('use indicated config to run the server')
-    .action(actions.runConfig)
+    program.on('--help', function () {
+        logger.info('\nExamples:')
+        logger.info('$ cup --help')
+        logger.info('$ cup -h')
+    })
 
-    program.on('--help', function() {
-        console.info(' Examples:');
-        console.info('');
-        console.info('$ cup --help');
-        console.info('$ cup -h');
-        console.info('');
-    });
-
-    program.parse(process.argv);
-
-} catch(e) {
-    console.error("Exec error." + e);
+    program.parse(process.argv)
+} catch (e) {
+    logger.error('Exec error.' + e)
 }
