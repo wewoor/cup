@@ -18,7 +18,7 @@ function getCupConfig (path) {
     return require(configPath)
 }
 
-function run (app, port, path) {
+function run (app, port) {
     app.listen(port, function () {
         exec(`open http://localhost:${port}`)
         println('Use ctrl + c exit the Server. More helps,', 'use cup -h.')
