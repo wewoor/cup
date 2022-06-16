@@ -1,71 +1,79 @@
 # Cup
-An easy way to run a web server in your system. you can indicate the public file path to run the server ,and look these html static files in browser.
 
-### [中文文档](./README_zh.md)
+[![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url]
 
-# Features
-> 1. easy indicate directory and custom server port
-> 2. support indicate server public path
-> 3. support location parse. you can use location specify some special path.
-> 4. support api server proxy.
+**Easy to serve web resources, and proxy requests**. You can make use of the `Cup` to mock `Nginx` for your web application sometimes.
 
-# Install & Upgrade
+[download-img]: https://img.shields.io/npm/dm/mini-cup.svg?style=flat
+[download-url]: https://www.npmjs.com/package/mini-cup
+[npm-version]: https://img.shields.io/npm/v/mini-cup.svg?style=flat-square
+[npm-version-url]: https://www.npmjs.com/package/@dtinsight/molecule
 
-> npm install -g mini-cup 
+[中文文档](./README_zh.md)  | [English](./README.md)
 
-# Usage
-
-### run default path
+## Installation
 
 ```bash
-$ cup run //Default path is current root directory. 
+$ npm install -g mini-cup
+
+Or
+
+$ yarn add -g mini-cup
 ```
 
-### run indicated path
+## Usage
+
+### Run the server by the specified path
 
 ```bash
 $ cup run <path> //The path is your indicated directory
 ```
 
-### run indicated path and server port
+### Run the server by the specified path and port
 
 ```bash
 $ cup run <path> -p <port>
 ```
 
-### run by custom configration
-you can write a configration file which name is `config.cup.json` and located in you project root path. when you run the belows commands, this config file will be readed by cup, and the server will be run by your configration.
+### Run by `cup.config.js` config mode
+
+Run the server by the custom configuration. There you can to initialize a `cup.config.js` file in the current working directory.
 
 ```bash
-$ cup -c
-or
-$ cup config
+$ cup init
 ```
 
-#### config example
-```json
-{
-    "name": "testcup",
-    "listen": 3001,
-    "root": "test/public",
-    "location": {
-        "*": "test/public/index.html"
+And run the start command:
+
+```bash
+$ cup run -c
+```
+
+#### The example of `cup.config.js`
+
+```js
+const base = './dist'
+module.exports = {
+    name: 'example',
+    listen: 3000,
+    root: base,
+    location: {
+        '/api/task/get': `${base}/get.json`,
+        '/api/task/add': `${base}/add.json`
     },
-    "proxyTable": {
-        "/public": "www.google.com",
-        "/test": "www.google.com"
+    proxyTable: {
+        '/join': {
+            target: 'https://github.com',
+            changeOrigin: true
+        }
     }
 }
-
 ```
 
-### proxy config
-More proxy config [options](https://github.com/chimurai/http-proxy-middleware)
+## Proxy
 
-# Github
+More usage of Proxy, please refer to [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware).
 
-https://github.com/wewoor/cup
-
-# License
+## License
 
 MIT
