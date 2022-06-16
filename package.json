@@ -52,5 +52,8 @@
     "url": "https://github.com/wewoor/cup/issues",
     "email": "wewoor@foxmail.com"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "license": "MIT"
 }
