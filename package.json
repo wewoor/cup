@@ -10,7 +10,7 @@
     "container",
     "runner"
   ],
-  "main": "app.js",
+  "main": "src/actions.js",
   "bin": {
     "cup": "./bin/cli.js"
   },
