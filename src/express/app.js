@@ -1,5 +1,5 @@
 const express = require('express')
-const proxy = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 const compression = require('compression')
 const morgan = require('morgan')
 
@@ -46,7 +46,10 @@ function parseProxy (proxyObj) {
         const paths = Object.getOwnPropertyNames(proxyObj)
         if (paths.length > 0) {
             for (const i in paths) {
-                app.use(paths[i], proxy(proxyObj[paths[i]]))
+                app.use(paths[i], createProxyMiddleware({
+                    ...proxyObj[paths[i]],
+                    logLevel: 'silent'
+                }))
             }
         }
     }

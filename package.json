@@ -20,9 +20,8 @@
     "commander": "^9.3.0",
     "compression": "^1.6.2",
     "express": "^4.13.3",
-    "express-http-proxy": "^0.10.1",
     "express-session": "^1.13.0",
-    "http-proxy-middleware": "^0.17.3",
+    "http-proxy-middleware": "^2.0.6",
     "morgan": "^1.8.1"
   },
   "devDependencies": {
