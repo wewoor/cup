@@ -34,9 +34,19 @@ function info (...msg) {
     println(chalk.blue(...msg))
 }
 
+/**
+ * Info log
+ * @param  {[type]} msg [description]
+ * @return {[type]}     [description]
+ */
+function success (...msg) {
+    println(chalk.greenBright(...msg))
+}
+
 exports.default = {
     println,
     error,
     warning,
-    info
+    info,
+    success
 }

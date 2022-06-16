@@ -15,14 +15,14 @@ try {
 
     program
         .command('run')
-        .description('startup the Express server by the directory or cup.config.js you specified.')
-        .arguments('[path]', 'required the root path of the server.')
+        .description('start up the Express server by the directory or cup.config.js you specified.')
+        .arguments('[path]', 'serve the directory specified. If not,the Cup will try to start up the server by the config mode.')
         .option('-p, --port <port>', 'use custom server port. default is 3000.')
-        .option('-c, --config', 'use cup.config.js or cup.config.json to startup the server.')
+        .option('-c, --config', 'use cup.config.js or cup.config.json to start up the server.')
         .action((path, options) => {
             if (path) {
                 runByPath(path, options)
-            } else if (options.config) {
+            } else {
                 runByConfig(path)
             }
         })

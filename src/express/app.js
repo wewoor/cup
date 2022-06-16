@@ -4,7 +4,7 @@ const compression = require('compression')
 const morgan = require('morgan')
 
 const { INFO, SERVER_LISTEN_CONFIG } = require('../constants')
-const { info, warning, println } = require('../logger').default
+const { info } = require('../logger').default
 
 const app = express()
 
@@ -34,7 +34,6 @@ function parseLocation (location) {
             for (let i = 0; i < paths.length; i++) {
                 const url = paths[i]
                 const target = `${process.env.PWD}/${location[url]}`
-                info(`${url} -> ${location[url]}`)
                 app.get(url, reqHandler(target))
                 app.post(url, reqHandler(target))
             }
@@ -46,12 +45,10 @@ function parseProxy (proxyObj) {
     if (proxyObj) {
         const paths = Object.getOwnPropertyNames(proxyObj)
         if (paths.length > 0) {
-            // warning('Cup added proxy:')
             for (const i in paths) {
                 app.use(paths[i], proxy(proxyObj[paths[i]]))
             }
         }
-        println('')
     }
 }
 
@@ -65,7 +62,6 @@ function getAppByConfig (config) {
     if (!config.listen) {
         throw new Error("You haven't set the listen port." + INFO)
     }
-    warning('Cup parsing the config:')
 
     parseLocation(config.location)
     parseProxy(config.proxyTable)

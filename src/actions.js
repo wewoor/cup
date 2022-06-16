@@ -1,15 +1,9 @@
 const exec = require('child_process').exec
+const chalk = require('chalk')
 
 const { getAppByConfig, getApp } = require('./express/app')
 const { SERVER_LISTEN_CONFIG } = require('./constants')
-const { println, info } = require('./logger').default
-
-function printServeInfo (port, path) {
-    println('The server is running at:')
-    info(`http://localhost:${port}`)
-    println('The static resources directory at:')
-    info(`${path}`)
-}
+const { println, info, success } = require('./logger').default
 
 function getCupConfig (path) {
     const configPath = path ||
@@ -21,25 +15,26 @@ function getCupConfig (path) {
 function run (app, port) {
     app.listen(port, function () {
         exec(`open http://localhost:${port}`)
-        println('Use ctrl + c exit the Server. More helps,', 'use cup -h.')
+        info(`Visit: http://localhost:${port}`)
+        println('Use ctrl + c exit the Server. More helps,', `use ${chalk.cyanBright('cup run -h')}.`)
     })
 }
 
 function runByConfig (path) {
     const cupConfig = getCupConfig(path)
-    printServeInfo(cupConfig.listen, cupConfig.root)
+    success('\nThe server is successful running by config mode!')
 
     const app = getAppByConfig(cupConfig)
     run(app, cupConfig.listen, cupConfig.root)
 }
 
 function runByPath (path, options) {
+    success('\nThe server is successful running by the specified path!')
+
     const workingPath = process.cwd()
     const dir = path || workingPath
     const port = options.port || SERVER_LISTEN_CONFIG.port
     const app = getApp(dir, port)
-
-    printServeInfo(port, path)
 
     run(app, port, path)
 }
