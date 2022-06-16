@@ -1,5 +1,5 @@
 const exec = require('child_process').exec
-const fs = require('fs-extra')
+const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 
@@ -43,11 +43,11 @@ function runByPath (path, options) {
 
 function initializeCupConfig () {
     const workingPath = process.cwd()
-    fs.copy(path.resolve(__dirname, './template/cup.config.js'), workingPath + '/cup.config.js')
-        .then(() => {
-            logger.success(`Initialize the cup.config.js to ${workingPath} successful!`)
-        })
-        .catch(err => console.error(err))
+    function callback (err) {
+        if (err) throw err
+        logger.success(`Initialize the cup.config.js to ${workingPath} successful!`)
+    }
+    fs.copyFile(path.resolve(__dirname, './template/cup.config.js'), workingPath + '/cup.config.js', callback)
 }
 
 exports.default = {
