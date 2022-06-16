@@ -2,7 +2,7 @@
 
 [![NPM downloads][download-img]][download-url] [![NPM version][npm-version]][npm-version-url]
 
-**Easy to serve web resources, and proxy requests**. You can make use of the `Cup` to mock `Nginx` for your web application sometimes.
+**Easy to serve web resources, and proxy requests**. You can use the `Cup` to mock a web server like the `Nginx` for your static resource sometimes.
 
 [download-img]: https://img.shields.io/npm/dm/mini-cup.svg?style=flat
 [download-url]: https://www.npmjs.com/package/mini-cup
@@ -37,7 +37,7 @@ $ cup run <path> -p <port>
 
 ### Run by `cup.config.js` config mode
 
-Run the server by the custom configuration. There you can to initialize a `cup.config.js` file in the current working directory.
+Run the server by the custom configuration. There you can initialize a `cup.config.js` file in the current working directory.
 
 ```bash
 $ cup init
