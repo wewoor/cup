@@ -1,6 +1,6 @@
 {
   "name": "mini-cup",
-  "version": "1.1.2",
+  "version": "2.0.0-beta",
   "type": "commonjs",
   "description": "Easy to serve static web resources, Easy to proxy requests.",
   "keywords": [
@@ -21,7 +21,6 @@
     "compression": "^1.6.2",
     "express": "^4.13.3",
     "express-session": "^1.13.0",
-    "fs-extra": "^10.1.0",
     "http-proxy-middleware": "^2.0.6",
     "morgan": "^1.8.1"
   },
@@ -37,7 +36,8 @@
     "cup": "cup",
     "test": "mocha",
     "eslint": "eslint src/** bin/** --fix",
-    "serve": "node src/server.js"
+    "serve": "node src/server.js",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
