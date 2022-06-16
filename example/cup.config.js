@@ -1,7 +1,7 @@
 const base = './dist'
 module.exports = {
-    name: 'testcup',
-    listen: 3001,
+    name: 'example',
+    listen: 3000,
     root: base,
     location: {
         '/api/task/get': `${base}/get.json`,

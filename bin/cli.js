@@ -5,7 +5,7 @@ process.title = 'cup'
 const program = require('commander')
 
 const packageInfo = require('../package.json')
-const { runByPath, runByConfig } = require('../src/actions').default
+const { runByPath, runByConfig, initializeCupConfig } = require('../src/actions').default
 
 try {
     program
@@ -26,6 +26,11 @@ try {
                 runByConfig(path)
             }
         })
+
+    program
+        .command('init')
+        .description('Initialize the cup.config.js in your working directory.')
+        .action(initializeCupConfig)
 
     program.on('--help', function () {
         console.log('\nExamples:')
