@@ -1,8 +1,8 @@
-const base = 'test/public'
+const base = './dist'
 module.exports = {
     name: 'testcup',
     listen: 3001,
-    root: 'test/public',
+    root: base,
     location: {
         '/api/task/get': `${base}/get.json`,
         '/api/task/add': `${base}/add.json`
